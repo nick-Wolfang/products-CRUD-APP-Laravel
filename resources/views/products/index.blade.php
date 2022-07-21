@@ -58,9 +58,9 @@
             <td class="border p-3 ">
                <span class="text-underline text-blue-500">
                 <form action="{{ route('products.destroy', ['id' => $product['id']] ) }}" method="post">
-                  @method('delete')
+                  @method('DELETE')
                   @csrf
-                  <input type="submit" value="Delete">
+                  <input  class="underline" type="submit" value="Delete">
                 </form>
                </span>
             </td>
