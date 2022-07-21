@@ -57,7 +57,11 @@
             </td>
             <td class="border p-3 ">
                <span class="text-underline text-blue-500">
-                <a class="underline" href="{{ route('products.destroy', ['id' => $product['id']] ) }}">Delete</a>
+                <form action="{{ route('products.destroy', ['id' => $product['id']] ) }}" method="post">
+                  @method('delete')
+                  @csrf
+                  <input type="submit" value="Delete">
+                </form>
                </span>
             </td>
             
