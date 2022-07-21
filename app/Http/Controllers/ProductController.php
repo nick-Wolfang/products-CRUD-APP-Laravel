@@ -2,238 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function home()
-    {
-        return 'home';
-    }
-    public function getLogin()
-    {
-        return 'getLogin';
-    }
     public function index()
     {
-        $produits = [
-            [
-                'id'=>1,
-                'name'=>'Tecno',
-                'price'=> 80000,
-                'provider' => 'Chinese',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id'=>2,
-                'name'=>'Samsung',
-                'price'=> 200000,
-                'provider' => 'Korean',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id' => 3,
-                'name' => 'Iphone',
-                'price' => 500000,
-                'provider' => 'American',
-                'model' => 'Tecno Povoir 2'
-            ]
-            ];
+        $products = Product::query()->get();
         return view('products.index', 
-            ['products' => $produits, 
-             'user' => 'Nick'
-            ]);
+            ['products' => $products]);
     }
     public function create()
     {
-       return view('products.create');
+        return view('products.create');
     }
-    public function save()
+    public function save(Request $request)
     {
-        $newProd = [
-            'id' => 0,
-            'name' => 'Unknown',
-            'price' => 0,
-            'provider' => 'Unknown',
-            'model' => 'Unknown'
-        ];
-        $produits = [
-            [
-                'id'=>1,
-                'name'=>'Tecno',
-                'price'=> 80000,
-                'provider' => 'Chinese',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id'=>2,
-                'name'=>'Samsung',
-                'price'=> 200000,
-                'provider' => 'Korean',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id' => 3,
-                'name' => 'Iphone',
-                'price' => 500000,
-                'provider' => 'American',
-                'model' => 'Tecno Povoir 2'
-            ]
-            ];
-            $newProd['id'] = $_POST['id'];
-            $newProd['name'] = $_POST['nom'];
-            $newProd['price'] = $_POST['prix'];
-            $newProd['provider'] = $_POST['fournisseur'];
-            $newProd['model'] = $_POST['Modele'];
-
-            $produits[] = $newProd;
-
-        return view('products.index', ['products' => $produits, 
-                'user' => 'Nick']);
+        
+        $this->validate($request, [
+            'name' => ['required', 'unique:products'],
+            'description' => ['required'],
+            'quantity' => ['required', 'integer'],
+        ]);
+        
+        Product::query()->create($request->except(['_token']));
+        return redirect(route('products.index'));
     }
     public function details($id)
     {
-        $produits = [
-            [
-                'id'=>1,
-                'name'=>'Tecno',
-                'price'=> 80000,
-                'provider' => 'Chinese',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id'=>2,
-                'name'=>'Samsung',
-                'price'=> 200000,
-                'provider' => 'Korean',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id' => 3,
-                'name' => 'Iphone',
-                'price' => 500000,
-                'provider' => 'American',
-                'model' => 'Tecno Povoir 2'
-            ]
-            ];
-            $product = collect($produits)->where('id', $id)->first();
-
-
-            return view('products.details', [
-                'product' => $product
-            ]);
-    }
-    public function update($id)
-    {
-        $produits = [
-            [
-                'id' => 1,
-                'name' => 'Tecno',
-                'price' => 80000,
-                'provider' => 'Chinese',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id' => 2,
-                'name' => 'Samsung',
-                'price' => 200000,
-                'provider' => 'Korean',
-                'model' => 'S20'
-            ],
-            [
-                'id' => 3,
-                'name' => 'Iphone',
-                'price' => 500000,
-                'provider' => 'American',
-                'model' => '12 pro'
-            ]
-            ];
-            $nbreProduits = count($produits);
-            $i = 0;
-            while($i < $nbreProduits) {
-                if($produits[$i]['id'] == $id) {
-                    $produits[$i]['name'] = $_POST['nom'];
-                    $produits[$i]['price'] = $_POST['prix'];
-                    $produits[$i]['provider'] = $_POST['fournisseur'];
-                    $produits[$i]['model'] = $_POST['Modele'];
-                    break;
-                }
-                $i += 1;
-            }
-        return view('products.index', ['products' => $produits,
-            'user' => 'Nick']);
+        
+        $product = Product::find($id);
+        return view('products.details', [
+            'product' => $product
+        ]);
     }
     public function edit($id)
     {
-        $produits = [
-            [
-                'id'=>1,
-                'name'=>'Tecno',
-                'price'=> 80000,
-                'provider' => 'Chinese',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id'=>2,
-                'name'=>'Samsung',
-                'price'=> 200000,
-                'provider' => 'Korean',
-                'model' => 'S20'
-            ],
-            [
-                'id' => 3,
-                'name' => 'Iphone',
-                'price' => 500000,
-                'provider' => 'American',
-                'model' => '12 pro'
-            ]
-            ];
-            $product = collect($produits)->where('id', $id)->first();
-        return view('products.edit', ['product' => $product]);
+        $product = Product::find($id);
+        return view('products.edit', [
+            'product' => $product
+        ]);
     }
-    public function destroy($id)
+    public function update($id, Request $req)
     {
-        $produits = [
-            [
-                'id'=>1,
-                'name'=>'Tecno',
-                'price'=> 80000,
-                'provider' => 'Chinese',
-                'model' => 'Tecno Povoir 2'
-            ],
-            [
-                'id'=>2,
-                'name'=>'Samsung',
-                'price'=> 200000,
-                'provider' => 'Korean',
-                'model' => 'S20'
-            ],
-            [
-                'id' => 3,
-                'name' => 'Iphone',
-                'price' => 500000,
-                'provider' => 'American',
-                'model' => '12 pro'
-            ]
-            ];
-        $nbreProduits = count($produits);
-            $i = 0;
-            dd($nbreProduits);
-            while($i < $nbreProduits) {
-                if($produits[$i]['id'] == $id) {
-                    unset($produits[$i]);
-                    break;
-                }
-                else {
-                    $i += 1;
-                }
-
-            }
-        return view('products.index', ['products' => $produits,
-                'user' => 'Nick']);
+        
+        Product::find($id)->update($req->all());
+        return redirect()->route('products.index');
     }
-    public function removedElementPage()
+    public function destroy($id, $req)
     {
-        return view('products.removedElement');
+        Product::find($id)->delete();
+        return redirect()->route('products.index');
     }
 }

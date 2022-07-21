@@ -3,14 +3,10 @@ module.exports = {
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
-    "resources/**/*vue.js"
+    "./resources/**/*.vue",
   ],
   theme: {
-    extend: {
-      colorss: {
-        primary: '8rem'
-      }
-    },
+    extend: {},
   },
   plugins: [],
 }

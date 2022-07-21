@@ -8,35 +8,66 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-    <div class="">
-        <h2 class="mb-10 border-top-6">Bienvenu {{$user}} Liste des Produits</h2>
-        <table class="border-separate border-spacing-2 border border-slate-400">
-            <thead class="bg-gray-200 border-b-6">
-                <tr class="px-6">
-                    <th class="border-top-4">Id</th>
-                    <th class="">Nom de l'appareil</th>
-                    <th>Prix</th>
-                    <th>Details</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($products as $i)
-                    <tr>
-                        <td>{{ $i['id'] }}</td>
-                        <td>{{ $i['name'] }}</td>
-                        <td>{{ $i['price'] }} Fcfa</td>
-                        <td class="hover:underline"><a href="{{ route('details', ['id'=>$i['id']]) }}">Details</a></td>
-                        <td class="hover:underline"><a href="{{ route('edit', ['id'=>$i['id']]) }}">Edit</a></td>
-                        <td class="hover:underline"><a href="{{ route('delete', ['id'=>$i['id']]) }}">Delete</a></td>
+<div>
+    <div class="flex items-center justify-between mb-6">
+       
+        <a class="bg-blue-500 p-2 rounded-md text-white hover:text-big" href="{{route('products.create')}}">
+          <span>Create</span>
+          <span class="hidden md:inline">&nbsp;Product</span>
+        </a>
+      </div>
 
-                    </tr>
-                @endforeach
-                
-            </tbody>
-        </table>
-        <a class="underline hover:text-green-500" href="{{ route('create') }}">Add new product ?</a>
-    </div>
+    
+<div class="bg-white rounded-md shadow overflow-x-auto">
+    <table class="w-full whitespace-nowrap">
+      <tr class="text-left font-bold">
+        <th class="pb-4 border  pt-6 px-6">ID</th>
+        <th class="pb-4 border pt-6 px-6">Name</th>
+        <th class="pb-4 border pt-6 px-6">Price</th>
+        <th class="pb-4 border pt-6 px-6">Details</th>
+        <th class="pb-4 border pt-6 px-6">Edit</th>
+        <th class="pb-4 border pt-6 px-6">Delete</th>
+       
+      </tr>
+      @if (count($products)==0)
+      <tr>
+        <td class="px-6 py-4 border-t" colspan="4">No events found.</td>
+     </tr>
+      @endif
+      @foreach ($products as $product)
+        <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
+            <td class="border p-3 text-center">
+                {{ $product['id'] }}
+            </td>
+            <td class="border p-3 ">
+                {{$product['name']}}
+            </td>
+            <td class="border p-3 ">
+                {{$product['price']}} FCFA
+            </td>
+            <td class="border p-3 ">
+               <span class="text-underline text-blue-500">
+                <a class="underline" href="{{ route('products.detail', ['id' => $product['id']] ) }}">Details</a>
+               </span>
+            </td>
+            <td class="border p-3 ">
+               <span class="text-underline text-blue-500">
+                <a class="underline" href="{{ route('products.edit', ['id' => $product['id']] ) }}">Edit</a>
+               </span>
+            </td>
+            <td class="border p-3 ">
+               <span class="text-underline text-blue-500">
+                <a class="underline" href="{{ route('products.destroy', ['id' => $product['id']] ) }}">Delete</a>
+               </span>
+            </td>
+            
+        </tr>
+       
+      @endforeach
+    </table>
+  </div>
+
+
+</div>
 </body>
 </html>
