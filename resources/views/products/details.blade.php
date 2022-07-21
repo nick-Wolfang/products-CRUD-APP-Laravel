@@ -1,3 +1,9 @@
+
+@extends('layouts.app')
+
+
+@section("content")
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +15,12 @@
     
 </head>
 <body>
+    <h1 class="mb-6  mt-2 text-3xl font-bold bg-gray-200 h-24 rounded" >
+        <a class="text-indigo-400 hover:text-indigo-600 mb-6 pt- hover:underline" href="{{route('products.index')}}">Products</a>
+        <span class="text-indigo-400 font-medium pt-4">/</span>Details
+        <hr>
+      </h1>
+      <hr class="bg-gray-700 h-3 mb-2 rounded">
     <div class="flex items-center justify-between mb-6">
        <a class="bg-blue-500 p-2 rounded-md text-white hover:text-big" href="{{route('products.create')}}">
          <span>Create</span>
@@ -45,4 +57,6 @@
             </td>
         </tr>
 </body>
-</html>l
+</html>
+
+@endsection

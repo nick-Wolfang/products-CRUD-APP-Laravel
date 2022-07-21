@@ -30,3 +30,6 @@ Route::put("/products/{id}", [ProductController::class, 'update'])->name('produc
 Route::get("/products/{id}/edit", [ProductController::class, 'edit'])->name('products.edit');
 
 Route::delete("/products/{id}", [ProductController::class, 'destroy'])->name('products.destroy');
+
+
+Route::get("/search/{name}", [ProductController::class, 'search'])->name('products.search');

@@ -55,4 +55,11 @@ class ProductController extends Controller
         Product::find($id)->delete();
         return redirect()->route('products.index');
     }
+
+    public function search($name)
+    {
+        $products = Product::find($name)->get();
+        return view('products.index', 
+            ['products' => $products]);
+    }
 }

@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+
+@section("content")
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +16,14 @@
     
 <div class=" w-full">
        
-       <h1 class="mb-8 text-3xl font-bold">
-         <a class="text-indigo-400 hover:text-indigo-600" href="{{route('products.index')}}">Products</a>
-         <span class="text-indigo-400 font-medium">/</span> Create
-       </h1>
-       <div class="max-w-3xl bg-white rounded-md shadow overflow-hidden">
+      <h1 class="mb-6  mt-2 text-3xl font-bold bg-gray-200 h-24 rounded content-center" >
+        <a class="text-indigo-400 hover:text-indigo-600 mb-6 pt- hover:underline" href="{{route('products.index')}}">Products</a>
+        <span class="text-indigo-400 font-medium pt-4">/</span>Create
+        <hr>
+      </h1>
+      <hr class="bg-gray-700 h-3 mb-2 rounded">
+      <hr>
+       <div class="max-w-3xl bg-white border-4 rounded-md shadow overflow-hidden">
        
          <form  action="{{route('products.save')}}" method="POST" >
            @csrf
@@ -71,3 +79,5 @@
 
 </body>
 </html>
+
+@endsection
