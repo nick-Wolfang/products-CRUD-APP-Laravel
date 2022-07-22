@@ -48,4 +48,9 @@ class AuthController extends Controller
         return $this->postLogin($req);
         
     }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }
