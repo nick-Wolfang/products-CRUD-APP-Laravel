@@ -9,7 +9,15 @@
     <title>Document</title>
 </head>
 <body class="border-8 h-full bg-[url('../../../public/images/very-light-blue')]">
+    
     <div class="mx-6 pt-6">
+        <div class="align-center items-center justify-center bg-gray-200 p-4 bg-opacity-50 mb-6 h-20 rounded">
+            <img class="h-10 z-0 m-0 p-0" src="{{asset('images/avatar2.jpg')}}" alt=""> 
+            <div class="flex items-end">
+                <h1 class=" text-sm font-bold w-auto">{{Auth::user()->name}}</h1>
+                <div class="h-4 w-4 bg-green-500 rounded-full mr-4 z-10 border-2 border-gray-100"></div>
+            </div>
+        </div>
         <span class="">
             <a href="{{ route('products.index') }}">
                 {{-- <form action="{{ route('products.search', ['name' => $product['name']]) }}" method="get">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,4 @@ Route::get("/auth/login", [AuthController::class, 'getLogin'])->name('auth.getLo
 Route::post("/auth/login", [AuthController::class, 'postLogin'])->name('auth.postLogin');
 Route::get("/auth/register", [AuthController::class, 'getRegister'])->name('auth.getRegister');
 Route::post("/auth/register", [AuthController::class, 'postRegister'])->name('auth.postRegister');
+Route::get("/dashboard", [DashbordController::class, 'index'])->name('dashbord.inex');

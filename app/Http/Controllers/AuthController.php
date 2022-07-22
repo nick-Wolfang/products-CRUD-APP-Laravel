@@ -31,8 +31,21 @@ class AuthController extends Controller
     {
         return view('auth.register');
     }
-    public function postRegister()
+    public function postRegister(Request $req)
     {
-        # code...
+        $this->validate($req, [
+            'name' => 'required',
+            'email' => ['required', 'unique:users,email'],
+            'password' => ['required', 'min:6']
+        ]);
+
+        $user =new User();
+        $user->name =$req->name;
+        $user->email =$req->email;
+        $user->password = Hash::make($req->password);;
+        $user->save();
+
+        return $this->postLogin($req);
+        
     }
 }
