@@ -16,7 +16,10 @@
                     <input type="text" name="name" id="name">
                 </form> --}}
                 <img src="../../../public/images/search-icons.png" alt="" class="">
-                <input type="text" name="name" id="name" class="rounded h-8 border-0" placeholder="Search products">
+                <input type="text" name="name" id="name" class="
+                appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md 
+                focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 placeholder="Search products">
             </a>
         </span>
         <div class="">

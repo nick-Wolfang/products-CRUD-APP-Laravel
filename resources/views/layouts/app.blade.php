@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container flex flex-row">
-           <div class=" h-screen bg-sky-500">
+           <div class=" h-screen bg-sky-800">
                 @section('sidebar')
                 @include('components.sidebar')
                 @show

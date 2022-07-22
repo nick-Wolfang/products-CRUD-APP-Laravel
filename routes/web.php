@@ -35,7 +35,7 @@ Route::delete("/products/{id}", [ProductController::class, 'destroy'])->name('pr
 Route::get("/search/{name}", [ProductController::class, 'search'])->name('products.search');
 
 //Auth Routes
-Route::get("/auth/login", [AuthController::class, 'getLogin'])->name('auth.login');
+Route::get("/auth/login", [AuthController::class, 'getLogin'])->name('auth.getLogin');
 Route::post("/auth/login", [AuthController::class, 'postLogin'])->name('auth.postLogin');
 Route::get("/auth/register", [AuthController::class, 'getRegister'])->name('auth.getRegister');
 Route::post("/auth/register", [AuthController::class, 'postRegister'])->name('auth.postRegister');
