@@ -25,7 +25,7 @@
       <hr>
        <div class="max-w-3xl bg-white border-4 rounded-md shadow overflow-hidden">
        
-         <form  action="{{route('products.save')}}" method="POST" >
+         <form action="{{route('products.save')}}" enctype="multipart/form-data" method="POST" >
            @csrf
            <div class="flex flex-col flex-wrap -mb-8 -mr-6 p-8">
                <div class="flex flex-col py-2">
@@ -78,13 +78,13 @@
                        <span class="text-red-500 text-sm">{{ $message }}</span>
                    @enderror
                </div>
-               {{-- <div class="flex flex-col py-2">
+               <div class="flex flex-col py-2">
                     <span class="font-bold">Product's Image</span>
-                    <input type="file" name="productImage" value="{{old('productImage')}}" id="productImage"  placeholder="Product Minimum Stock" class="border  p-1 rounded-md @error('productImage') border-red-500 @enderror"/>
-                    @error('productImage')
+                    <input type="file" name="product_image" value="{{old('product_image')}}" id="product_image"  placeholder="Product Minimum Stock" class="border  p-1 rounded-md @error('product_image') border-red-500 @enderror"/>
+                    @error('product_image')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
-                </div> --}}
+                </div>
            </div>
            <div class="flex items-center justify-end px-8 py-4 bg-gray-50 border-t border-gray-100">
                <button type="submit" class="text-indigo-400 bg-blue-500 p-2 rounded-md text-white hover:text-indigo-600" href="{{route('products.index')}}">Create Product</button>

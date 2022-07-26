@@ -24,7 +24,10 @@ class ProductController extends Controller
             'name' => ['required', 'unique:products'],
             'description' => ['required'],
             'quantity' => ['required', 'integer'],
+            'product_image' => ['required'],
         ]);
+
+        $image_path = $request->file('product_image')->store('image');
 
        
         // $product = Product::query()->create($request->except(['_token']));
@@ -36,6 +39,7 @@ class ProductController extends Controller
         $product->stock_min = $request->stock_min;
         $product->price = $request->price;
         $product->user_id = auth()->id();
+        $product->image = $image_path;
         $product->save();
 
         return redirect(route('products.index'));
