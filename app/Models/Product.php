@@ -17,5 +17,6 @@ class Product extends Model
         "quantity",
         "user_id"
     ];
+
     
 }

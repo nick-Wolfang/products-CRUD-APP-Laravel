@@ -31,56 +31,33 @@
 
     
 <div class="bg-white rounded-md shadow overflow-x-auto">
-    <table class="w-full whitespace-nowrap">
-      <tr class="text-left font-bold">
-        <th class="pb-4 border  pt-6 px-6">ID</th>
-        <th class="pb-4 border pt-6 px-6">Name</th>
-        <th class="pb-4 border pt-6 px-6">Price</th>
-        <th class="pb-4 border pt-6 px-6">Details</th>
-        <th class="pb-4 border pt-6 px-6">Edit</th>
-        <th class="pb-4 border pt-6 px-6">Delete</th>
-       
-      </tr>
-      @if (count($products)==0)
+      {{-- @if (count($products)==0)
       <tr>
         <td class="px-6 py-4 border-t" colspan="4">No events found.</td>
      </tr>
-      @endif
+      @endif --}}
+      <div class="flex flex-wrap ml-8">
+
       @foreach ($products as $product)
-        <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
-            <td class="border p-3 text-center">
-                {{ $product['id'] }}
-            </td>
-            <td class="border p-3 ">
-                {{$product['name']}}
-            </td>
-            <td class="border p-3 ">
-                {{$product['price']}} FCFA
-            </td>
-            <td class="border p-3 ">
-               <span class="text-underline text-blue-500">
-                <a class="underline" href="{{ route('products.detail', ['id' => $product['id']] ) }}">Details</a>
+            <div class="bg-gray-100 rounded-md shadow overflow-x-auto mr-8 mt-4">
+              <h3 class="font-bold">
+                {{ $product['name'] }}
+              </h3>
+              <p class="text-green-600">
+                {{ $product['price'] }} <span class="text-xs">FCFA</span>
+              </p>
+              <p class="text-sm text-gray-700">
+                Desc : <span class="text-gray-500 font-thin">{{ $product['description'] }}</span>
+              </p>
+              <p class="text-sm text-gray-600">
+                Quantity : {{ $product['quantity'] }}
+              </p>
+               <span class="hover:text-underline text-blue-500 text-sm">
+                  <a class="underline" href="{{ route('products.detail', ['id' => $product['id']] ) }}">Details</a>
                </span>
-            </td>
-            <td class="border p-3 ">
-               <span class="text-underline text-blue-500">
-                <a class="underline" href="{{ route('products.edit', ['id' => $product['id']] ) }}">Edit</a>
-               </span>
-            </td>
-            <td class="border p-3 ">
-               <span class="text-underline text-blue-500">
-                <form action="{{ route('products.destroy', ['id' => $product['id']] ) }}" method="post">
-                  @method('DELETE')
-                  @csrf
-                  <input  class="underline" type="submit" value="Delete">
-                </form>
-               </span>
-            </td>
-            
-        </tr>
-       
+            </div>
       @endforeach
-    </table>
+    </div>
   </div>
 
 

@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->bigInteger("user_id");
-            //
+            $table->unsignedBigInteger('user_id');
+
+            $table->index('user_id');
         });
     }
 
@@ -27,7 +28,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn("user_id");
+            $table->dropColumn('user_id');
         });
     }
 };

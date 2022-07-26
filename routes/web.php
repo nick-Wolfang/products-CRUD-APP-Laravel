@@ -18,24 +18,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 Route::get('/login', [AuthController::class, 'getLogin']);
 
 
 
 Route::get("/search/{name}", [ProductController::class, 'search'])->name('products.search');
-Route::post("/auth/logout", [AuthController::class, 'logout'])->name('auth.logout');
 
 //Auth Routes
 Route::get("/auth/login", [AuthController::class, 'getLogin'])->name('auth.getLogin');
 Route::post("/auth/login", [AuthController::class, 'postLogin'])->name('auth.postLogin');
 Route::get("/auth/register", [AuthController::class, 'getRegister'])->name('auth.getRegister');
 Route::post("/auth/register", [AuthController::class, 'postRegister'])->name('auth.postRegister');
-Route::get("/dashboard", [DashbordController::class, 'index'])->name('dashbord.inex');
+Route::get("/dashboard", [DashbordController::class, 'index'])->name('dashbord.index');
 
-Route::group([
-    'middleware' => ['auth']
-], function() {
+Route::middleware('auth')->group(
+    function() {
     Route::get("/products", [ProductController::class, 'index'])->name('products.index');
     Route::get("/products/create", [ProductController::class, 'create'])->name('products.create');
     
@@ -46,5 +44,6 @@ Route::group([
     Route::get("/products/{id}/edit", [ProductController::class, 'edit'])->name('products.edit');
     
     Route::delete("/products/{id}", [ProductController::class, 'destroy'])->name('products.destroy');
-    
+    Route::get("/auth/logout", [AuthController::class, 'logout'])->name('auth.logout');
+
 });
