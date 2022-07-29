@@ -15,7 +15,8 @@ class Product extends Model
         "description",
         "stock_min",
         "quantity",
-        "user_id"
+        "user_id",
+        "image"
     ];
 
     

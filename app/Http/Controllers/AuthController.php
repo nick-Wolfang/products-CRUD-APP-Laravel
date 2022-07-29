@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
@@ -27,7 +28,8 @@ class AuthController extends Controller
             return redirect()->back()->withErrors(['password' => 'Invalid Credentials']);
         }
         Auth::login($user, $req->remember);
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME); 
+
     }
     public function getRegister()
     {

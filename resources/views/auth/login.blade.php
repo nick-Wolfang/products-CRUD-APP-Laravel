@@ -66,9 +66,7 @@
         <div class="text-sm font-medium  text-center">
         No account yet? <a class="underline text-indigo-500 hover:font-bold" href="{{route('auth.getRegister')}}"> Create my account</a> 
         </div>
-        <div class="text-sm font-medium  text-center">
-            <a class="underline text-gray-500 hover:font-bold" href="{{ route('products.detail', ['id' => $product['id']] ) }}"> Do it later ?</a> 
-        </div>
+        
     </div>
 </div>
 

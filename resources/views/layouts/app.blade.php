@@ -18,11 +18,11 @@
                 @yield('content')
             </div>
         </div>
-        <div class="h-13 bg-sky-800">
+        {{-- <div class="h-13 bg-sky-800">
             @section('footer')
             @include('components.footer')
             @show
-       </div>
+       </div> --}}
         
     </body>
 </html>

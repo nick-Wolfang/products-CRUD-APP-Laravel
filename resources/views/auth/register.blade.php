@@ -14,12 +14,16 @@
             <div>
                 <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 w-full"> 
                     <div class="w-full">
-                        <h3 class="font-body text-white text-2xl ml-4 cursor-pointer rounded-t bg-sky-800 h-15">Shoppy<span class="text-orange-500">.me</span></h3>
+                        <h3 class="font-body text-white text-2xl ml-4 cursor-pointer rounded-t bg-sky-800 h-15">
+                            Shoppy
+                            <span class="text-orange-500">.me</span>
+                        </h3>
                     </div>
-                    <br> - <br> <span class="underline text-2xl">Register     
-                </span></h2>       
+                    <br> - <br> <span class="underline text-2xl">Register</span>
+                </h2>      
+                <p class="text-sm text-center mt-2 text-gray-400">This takes only few seconds...</p> 
         </div>
-        <form class="mt-8 space-y-6" action="{{route('auth.postRegister')}}" method="POST">
+        <form class="mt-5 space-y-6" action="{{route('auth.postRegister')}}" method="POST">
             @csrf
             <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">
@@ -30,6 +34,7 @@
                         <span class="text-sm text-red-500 pb-2" >{{$message}}</span>
                     @enderror
                 </div>
+
                 <div>
                     <label for="email-address" class="sr-only">Email address</label>
                     <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none 
@@ -39,6 +44,22 @@
                     @error("email")
                         <span class="text-sm text-red-500 pb-2" >{{$message}}</span>
                     @enderror
+                </div>
+                <div class="flex flex-row ">
+                    <div class="my-4 mx-4 flex justify-center">
+                        <label for="M" class="mr-1">Male</label>
+                        <input id="M" name="sexe" type="radio" value="{{old('M')}}" class="relative block px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" value="1">
+                        @error("M")
+                            <span class="text-sm text-red-500 pb-2" >{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="my-4 mx-4 flex justify-center">
+                        <label for="F" class="mr-1">Female</label>
+                        <input id="F" name="sexe" type="radio" value="{{old('F')}}" class="relative block px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" value="2">
+                        @error("F")
+                            <span class="text-sm text-red-500 pb-2" >{{$message}}</span>
+                        @enderror
+                    </div>
                 </div>
                 <div>
                     <label for="password" class="sr-only">Password</label>

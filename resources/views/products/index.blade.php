@@ -13,10 +13,10 @@
     <title>Document</title>
     @vite('resources/css/app.css')
 </head>
-<body class="w-full">
+<body class="w-full p-0 center">
   
   <hr class="bg-gray-700 h-3 mb-2 rounded">
-<div>
+  <div class="w-full">
     <div class="flex items-center justify-between mb-6">
        
         <a class="bg-blue-500 p-2 rounded-md text-white hover:font-bold" href="{{route('products.create')}}">
@@ -25,8 +25,8 @@
         </a>
       </div>
 
-    
-<div class="bg-white rounded-md shadow overflow-x-auto">
+     {{-- <img class="w-full" src="{{url('images/15410.jpg')}}" alt="background image"> --}}
+    <div class="bg-white rounded-md shadow overflow-x-auto">
       {{-- @if (count($products)==0)
       <tr>
         <td class="px-6 py-4 border-t" colspan="4">No events found.</td>
@@ -35,9 +35,12 @@
       <div class="flex flex-wrap ml-8 shadow-2xl p-4 items-center">
       @foreach ($products as $product)
             {{-- <div class="">
-              {{-- <img src="{{ url('public/storage/uploads').$product->image }}" alt="product image"> 
+              {{-- <img src="{{ url('public/storage/uploads').$product->image }}" alt="product image">  
               <img src="/storage/{{ $product->image }}" alt="product image" class="max-w-xs">
             </div> --}}
+              @if ($product->image)   
+                <img src="{{ $product->image }}" width="100" class="text-center" height="100" alt="" srcset="">
+              @endif
             <div class="flex flew-row">
               <div class="bg-gray-100 rounded-md shadow mr-8 mt-4 max-h-50 max-w-45 p-3 min-w-30">
                 <h3 class="font-bold">
@@ -52,13 +55,27 @@
                 <p class="text-sm text-gray-600">
                   Quantity : {{ $product['quantity'] }}
                 </p>
-                    <span class="hover:text-underline  text-white-500 text-sm w-auto font-medium">
-                      <a class="underline" href="{{ route('products.detail', ['id' => $product['id']] ) }}">Details</a>
-                    </span>
+                    
+                @if (Auth::check())
+                  <span class="hover:text-underline  text-white-500 text-sm w-auto font-medium">
+                    <a class="underline" href="{{ route('products.detail', ['id' => $product['id']] ) }}">Details</a>
+                  </span>    
+                @else
+                  <span class="hover:text-underline  text-white-500 text-sm w-auto font-medium">
+                    <a class="underline" href="{{ route('auth.getLogin') }}">Details</a>
+                  </span>
+                @endif
                 <div class="flex flex-col">
-                  <a class="text-white bg-green-500 rounded-md p-1 cursor-pointer hover:font-bold relative cursor-pointer mt-2" href="{{route('auth.getLogin')}}">
-                    Buy now &#128176;
-                  </a>
+                  
+                  @if (Auth::check())
+                    <a class="text-white bg-green-500 rounded-md p-1 cursor-pointer hover:font-bold relative cursor-pointer mt-2" href="{{route('products.buy', ['id' => $product['id']])}}">
+                      Buy now &#128176;
+                    </a>
+                  @else
+                    <a class="text-white bg-green-500 rounded-md p-1 cursor-pointer hover:font-bold relative cursor-pointer mt-2" href="{{route('auth.getLogin')}}">
+                      Buy now &#128176;
+                    </a>
+                  @endif
                   <div class="hover:font-bold flex flex-col bg-white rounded-md p-1 cursor-pointer mt-2 items-center border hover:border-orange-500">
                     <a class=" cursor-pointer" href="{{route('auth.getLogin')}}">
                       Add to cart </a>
