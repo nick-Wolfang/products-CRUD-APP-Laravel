@@ -10,11 +10,14 @@
 <body>
     @extends('layouts.auth')
     <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-        <div>
-        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Stock Boot <br> - <br> <span class="underline text-2xl">Register</span></h2>
-        
+        <div class="max-w-md w-full space-y-8 rounded bg-gray-100 shadow-2xl p-4">
+            <div>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 w-full"> 
+                    <div class="w-full">
+                        <h3 class="font-body text-white text-2xl ml-4 cursor-pointer rounded-t bg-sky-800 h-15">Shoppy<span class="text-orange-500">.me</span></h3>
+                    </div>
+                    <br> - <br> <span class="underline text-2xl">Register     
+                </span></h2>       
         </div>
         <form class="mt-8 space-y-6" action="{{route('auth.postRegister')}}" method="POST">
             @csrf

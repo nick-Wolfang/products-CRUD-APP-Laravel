@@ -16,11 +16,7 @@
     
 <div class=" w-full">
        
-      <h1 class="mb-6  mt-2 text-3xl font-bold bg-gray-200 h-24 rounded content-center" >
-        <a class="text-indigo-400 hover:text-indigo-600 mb-6 pt- hover:underline" href="{{route('products.index')}}">Products</a>
-        <span class="text-indigo-400 font-medium pt-4">/</span>Create
-        <hr>
-      </h1>
+      
       <hr class="bg-gray-700 h-3 mb-2 rounded">
       <hr>
        <div class="max-w-3xl bg-white border-4 rounded-md shadow overflow-hidden">
@@ -92,7 +88,62 @@
          </form>
        </div>
      </div>
-
+     <div class="flex flex-column bg-sky-800">
+        <div class="">
+          <h1 class="h-4 w-full bg-sky-500"></h1>
+        </div>
+      
+        <div class="flex flex-row justify-evenly">
+          <div class="flex flex-column p-2 mt-10">
+            <h3 class="font-body text-white text-2xl ml-4 cursor-pointer">Shoppy<span class="text-orange-500">.me</span></h3>
+          </div>
+            <div class="p-8">
+                <h3 class=""><strong>Pour mieux nous connaitre</strong></h3>
+                <div class="">
+                    <ul>
+                        <li><a class="hover:underline" href="#">A propos de <strong>Shoppy</strong></a></li>
+                        <li><a class="hover:underline" href="#">Carrières</a></li>
+                        <li><a class="hover:underline" href="#"></a>Durabilité</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-8">
+                <h3 class=""><strong>Gagner de l'Argent</strong></h3>
+                <div class="">
+                    <ul>
+                        <li><a class="hover:underline" href="#">Vendez sur <strong>Shoppy</strong></a></li>
+                        <li><a class="hover:underline" href="#">Devenez partenaire</a></li>
+                        <li><a class="hover:underline" href="#"></a>Faites la promotion de vos produits</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-8">
+                <h3 class=""><strong>Moyens de paiement</strong></h3>
+                <div class="">
+                    <ul>
+                        <li><a class="hover:underline" href="#">Carte de Paiement</a></li>
+                        <li><a class="hover:underline" href="#">Paiement en plusieurs fois</a></li>
+                        <li><a class="hover:underline" href="#"></a>Cartes Cadeaux</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-8">
+                <h3 class=""><strong>Besoin d'aide ?</strong></h3>
+                <div class="">
+                    <ul>
+                        <li><a class="hover:underline" href="#">Voir vos commandes</a></li>
+                        <li><a class="hover:underline" href="#">Suivre vos commandes</a></li>
+                        <li><a class="hover:underline" href="#"></a>Tarifs et <br> options de livraison</li>
+                        <li><a class="hover:underline" href="#"></a>Retours et <br> remplacements</li>
+                        <li><a class="hover:underline" href="#"></a>Infos sur notre <br> market place</li>
+                        <li><a class="hover:underline" href="#"></a>Service client</li>
+                        <li><a class="hover:underline" href="#"></a>Accessibilité</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
 

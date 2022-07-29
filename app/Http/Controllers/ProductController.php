@@ -6,6 +6,9 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+//require 'vendor/autoload.php';
+use Intervention\Image\ImageManagerStatic as Image;
+
 class ProductController extends Controller
 {
     public function index()
@@ -26,10 +29,13 @@ class ProductController extends Controller
             'quantity' => ['required', 'integer'],
             'product_image' => ['required'],
         ]);
+        dd($request->product_image);
+        $image_path = $request->file('product_image')->store('uploads', 'local');
 
-        $image_path = $request->file('product_image')->store('image');
+        $image = Image::make("storage/{$image_path}")->fit(300, 200);
+        dd('dfgb');
 
-       
+        $image->save();
         // $product = Product::query()->create($request->except(['_token']));
         
         $product = new Product();
@@ -41,7 +47,6 @@ class ProductController extends Controller
         $product->user_id = auth()->id();
         $product->image = $image_path;
         $product->save();
-
         return redirect(route('products.index'));
     }
     public function details($id)

@@ -32,13 +32,16 @@ Route::get("/auth/register", [AuthController::class, 'getRegister'])->name('auth
 Route::post("/auth/register", [AuthController::class, 'postRegister'])->name('auth.postRegister');
 Route::get("/dashboard", [DashbordController::class, 'index'])->name('dashbord.index');
 
+Route::get("/products", [ProductController::class, 'index'])->name('products.index');
+Route::get("/products/{id}", [ProductController::class, 'details'])->name('products.detail');
+
+
+
 Route::middleware('auth')->group(
     function() {
-    Route::get("/products", [ProductController::class, 'index'])->name('products.index');
     Route::get("/products/create", [ProductController::class, 'create'])->name('products.create');
     
     Route::post("/products", [ProductController::class, 'save'])->name('products.save');
-    Route::get("/products/{id}", [ProductController::class, 'details'])->name('products.detail');
     
     Route::put("/products/{id}", [ProductController::class, 'update'])->name('products.update');
     Route::get("/products/{id}/edit", [ProductController::class, 'edit'])->name('products.edit');

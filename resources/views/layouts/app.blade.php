@@ -8,16 +8,21 @@
       
     </head>
     <body>
+        <div class="h-13 bg-sky-800">
+            @section('header')
+            @include('components.header')
+            @show
+       </div>
         <div class="container flex flex-row">
-           <div class=" h-screen bg-sky-800">
-                @section('sidebar')
-                @include('components.sidebar')
-                @show
-           </div>
- 
             <div class="container flex-grow  h-screen p-3">
                 @yield('content')
             </div>
         </div>
+        <div class="h-13 bg-sky-800">
+            @section('footer')
+            @include('components.footer')
+            @show
+       </div>
+        
     </body>
 </html>

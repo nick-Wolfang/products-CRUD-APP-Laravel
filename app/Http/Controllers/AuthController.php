@@ -17,6 +17,8 @@ class AuthController extends Controller
     }
     public function postLogin(Request $req)
     {
+        //dd('jgn');
+
         $user = User::query()->where("email", $req->email)->first();
         if(!$user) {
             return redirect()->back()->withErrors(['email' => 'User does not exist']);
@@ -39,7 +41,7 @@ class AuthController extends Controller
             'password' => ['required', 'min:6']
         ]);
 
-        $user =new User();
+        $user = new User();
         $user->name =$req->name;
         $user->email =$req->email;
         $user->password = Hash::make($req->password);;
@@ -54,3 +56,4 @@ class AuthController extends Controller
         return redirect('/');
     }
 }
+ 
