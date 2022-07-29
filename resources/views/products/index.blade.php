@@ -23,6 +23,14 @@
           <span>Add Product</span>
           <span class="hidden md:inline">&nbsp;</span>
         </a>
+        @if (Auth::check())
+          <a class="bg-blue-500 p-2 rounded-md text-white hover:font-bold" href="{{route('products.create')}}">
+            <span>Add Product</span>
+            <span class="hidden md:inline">&nbsp;</span>
+          </a>
+        @else
+          <p>Sell on shoppy.me</p>
+        @endif
       </div>
 
      {{-- <img class="w-full" src="{{url('images/15410.jpg')}}" alt="background image"> --}}
