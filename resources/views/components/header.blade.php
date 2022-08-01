@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
     @vite('resouces/css/app.css')
 </head>
-<body>
-    <div class="flex flex-row items-center justify-between">
+<body class="">
+    <div class=" flex flex-row items-center justify-between">
         <div class="flex flex-column">
             <h3 class="font-body text-white text-2xl ml-4 cursor-pointer">Shoppy<span class="text-orange-500">.me</span></h3>
         </div>
@@ -56,7 +56,7 @@
         </div>
         
     </div>
-    <div class="flex flex-row w-full bg-gray-400 p-2 justify-between">
+    <div class=" flex flex-row w-full bg-gray-400 p-2 justify-between">
         <div class="flex flex-row justify-between items-center">
             <div class="flex flex-row items-center pr-10">
                 <img src="{{asset('images/burger.png')}}" alt="burger-menu" class="w-5 h-4 cursor-pointer">

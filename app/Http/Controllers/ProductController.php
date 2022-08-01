@@ -15,15 +15,7 @@ class ProductController extends Controller
     {
         $users = User::query()->get();
         $products = Product::query()->get();
-        // foreach($users as $user) {
-        //     dd($user->product);
-        // }
-            
-        // if(!Auth::check())
-        return view('products.index', ['products' => $products, 'users' => $users]);
-        // $user = User::with(['name'])->findOrFail(Auth::id());
-        // return view('products.index', ['products' => $products, 'user' => $user]);
-            
+        return view('products.index', ['products' => $products, 'users' => $users]);            
     }
     public function create()
     {
@@ -36,17 +28,22 @@ class ProductController extends Controller
             'name' => ['required', 'unique:products'],
             'description' => ['required'],
             'quantity' => ['required', 'integer'],
+            'image' => 'required',
         ]);
         // $image_path = $request->file('product_image')->store('uploads', 'local');
-        $product = Product::query()->create(array_merge($request->except(['_token']), ['user_id' => $user->id]));
-        if ($request->hasFile('image')) {
-            $file = $request->file('product_image');
-            $filename = date('YmdHi').'_'.$file->getClientOriginalName();
-            $file->move(public_path('images'), $filename);
-            $path = 'public/images/'.$filename;
-            $product->update(['image' => $path]);
-        }
+        // $product = Product::query()->create(array_merge($request->except(['_token']), ['user_id' => $user->id]));
+        // dd($request->image);
+        // if ($request->hasFile('image')) {
+        //     $file = $request->file('image');
+        //     $filename = date('YmdHi').'_'.$file->getClientOriginalName();
+        //     $file->move(public_path('images'), $filename);
+        //     $path = './public/images/'.$filename;
+        //     $product->image = $path;
+        //     //$product->update(['image' => $path]);
+        // }
         // $product = Product::query()->create($request->except(['_token']));
+
+        $path = $request->file('image')->store('public/images');
         
         $product = new Product();
         $product->name = $request->name;
@@ -55,7 +52,7 @@ class ProductController extends Controller
         $product->stock_min = $request->stock_min;
         $product->price = $request->price;
         $product->user_id = auth()->id();
-        //$product->image = $path;
+        $product->image = $path;
         $product->save();
         
         return redirect(route('products.index'));
@@ -63,7 +60,6 @@ class ProductController extends Controller
     public function details($id)
     {
         $product = Product::find($id);
-
         return view('products.details', [
             'product' => $product
         ]);
@@ -96,7 +92,7 @@ class ProductController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('home');
+        return redirect()->route('products.index');
     }
     public function buy($id)
     {

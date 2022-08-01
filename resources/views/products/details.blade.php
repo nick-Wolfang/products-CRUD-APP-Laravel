@@ -18,12 +18,13 @@
     
       <hr class="bg-gray-700 h-3 mb-2 rounded">
     <div class="flex items-center justify-between mb-6">
-       <a class="bg-sky-800 p-2 rounded-md text-white hover:text-big" href="{{route('products.create')}}">
-         <span>Create</span>
-         <span class="hidden md:inline">&nbsp;Product</span>
-       </a>
+       <h4 class="text-xl font-bold border-b">Seller : 
+             @if ($product->user)   
+                <span class="text-lg ">{{ $product->user->name }}</span>
+            @endif
+       </h4>
     </div>
-    <table class="w-full whitespace-nowrap">
+    <table class="w-full whitespace-nowrap my-10 mb-full">
       <tr class="text-left font-bold">
         <th class="pb-4 border  pt-6 px-6">ID</th>
         <th class="pb-4 border pt-6 px-6">Name</th>
@@ -52,21 +53,32 @@
                 {{$product['stock_min']}}
             </td>
         </tr>
-        <div class="bg-green-400 ml-2">
-            <span class="text-underline text-white-500">
-              <a class="underline" href="{{ route('products.edit', ['id' => $product['id']] ) }}">Edit</a>
-            </span>
-          </div>
-          <div class="bg-red-400 p-1">
-            <span class="text-underline text-white-500">
-              <form action="{{ route('products.destroy', ['id' => $product['id']] ) }}" method="post">
-                @method('DELETE')
-                @csrf
-                <input  class="underline" type="submit" value="Delete">
-              </form>
-             </span>
-          </div>
-        <div class="flex flex-column bg-sky-800">
+        @if (Auth::user()->id == $product->user->id)
+            <div class="flex flex-row relative p-4 w-auto">
+                <div class="border bg-green-200 text-white border-green-400 ml-2 h-auto mx-5 hover:border-4 hover:border-green-400 relative">
+                    <span class="text-underline text-white-500 w-auto">
+                    <a class="" href="{{ route('products.edit', ['id' => $product['id']] ) }}">Edit</a>
+                    </span>
+                </div>
+                <div class="border bg-red-300 text-white border-red-500 p-1 hover:border-4 hover:border-red-500 mx-5 relative">
+                    <span class="text-underline text-white-500 h-auto ">
+                        <form action="{{ route('products.destroy', ['id' => $product['id']] ) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <input  class="" type="submit" value="Delete">
+                        </form> 
+                    </span>
+                </div>
+            </div>
+        @endif
+        <div class="animate-bounce w-15 h-6 mt-3 mb-30 text-center text-lg">
+            <a class="text-white bg-green-500 rounded-md p-1 cursor-pointer hover:font-bold relative cursor-pointer  " href="{{route('products.buy', ['id' => $product['id']])}}">
+                <span>Buy now &#128176;</span>
+            </a>
+        </div>
+    </table>
+    
+        <div class="mt-50 flex flex-column bg-sky-800 bottom-0">
             <div class="">
               <h1 class="h-4 w-full bg-sky-500"></h1>
             </div>

@@ -48,16 +48,15 @@
               {{-- <img src="{{ url('public/storage/uploads').$product->image }}" alt="product image">  
               <img src="/storage/{{ $product->image }}" alt="product image" class="max-w-xs">
             </div> --}}
-            <div class="flex flex-row">
-              @if ($product->image)   
-                <img src="{{ $product->image }}" width="100" class="text-center" height="100" alt="" srcset="">
-              @endif
-              @if ($product->user)
-                    {{ $product->user->name }}
-              @endif
-            </div>
+              
             <div class="flex flew-row">
               <div class="bg-gray-100 rounded-md shadow mr-8 mt-4 max-h-50 max-w-45 p-3 min-w-30">
+                <div class="text-sm bg-sky-500 text-center text-white rounded">
+                  @if ($product->image || $product->user)   
+                    {{-- <img src="{{ $product->image }}" width="100" class="text-center" height="100" alt="" srcset=""> --}}
+                    {{ $product->user->name }}
+                  @endif
+                </div>
                 <h3 class="font-bold">
                   {{ $product['name'] }}
                 </h3>

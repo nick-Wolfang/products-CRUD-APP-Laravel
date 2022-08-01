@@ -7,8 +7,8 @@
        <link rel="stylesheet" href="{{asset('styles.css')}}">
       
     </head>
-    <body>
-        <div class="h-13 bg-sky-800">
+    <body class="flex flex-col">
+        <div class="shadow-lg h-13 bg-sky-800 sticky top-0 drop-shadow z-30">
             @section('header')
             @include('components.header')
             @show
@@ -18,11 +18,11 @@
                 @yield('content')
             </div>
         </div>
-        {{-- <div class="h-13 bg-sky-800">
+        <div class="mb-0 mt-full bottom-0 w-full h-50 bg-sky-800">
             @section('footer')
             @include('components.footer')
             @show
-       </div> --}}
+       </div>
         
     </body>
 </html>

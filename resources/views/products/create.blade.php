@@ -75,8 +75,8 @@
                </div>
                <div class="flex flex-col py-2">
                     <span class="font-bold">Product's Image</span>
-                    <input type="file" name="product_image" value="{{old('product_image')}}" id="product_image"  placeholder="Product Minimum Stock" class="border  p-1 rounded-md @error('product_image') border-red-500 @enderror"/>
-                    @error('product_image')
+                    <input type="file" name="image" value="{{old('image')}}" id="image"  placeholder="Product Minimum Stock" class="border  p-1 rounded-md @error('image') border-red-500 @enderror"/>
+                    @error('image')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>

@@ -16,7 +16,7 @@ class Product extends Model
         "stock_min",
         "quantity",
         "user_id",
-        "image"
+        "image",
     ];
 
     public function user()
