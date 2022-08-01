@@ -34,16 +34,17 @@
                 <img src="{{asset('images/basket5.png')}}" alt="basket" class="w-10 h-10">
             </div>
             <div class="mr-2 p-2">
-                <img class="h-10 z-0 m-0 p-0" src="{{asset('images/avatar2.jpg')}}" alt=""> 
+                <a href="{{ route('profile.home') }}">
+                    <img class="h-10 z-0 m-0 p-0" src="{{asset('images/avatar2.jpg')}}" alt="">
+                </a>
                 
                 <div class="flex items-end items-center">
                     <h1 class=" text-sm text-white font-bold w-auto">
                         @if (Auth::check())
-                            {{Auth::user()->name}}
+                            <a href="{{ route('profile.home') }}"> {{Auth::user()->name}} </a>
                         @else
                             Guest User
                         @endif
-                        
                     </h1>
                     {{-- <div class="h-3 w-3 bg-green-500 rounded-full mr-4 z-10 border-2 border-gray-100"></div> --}}
                     <span class="flex h-3 w-3 justify-between">

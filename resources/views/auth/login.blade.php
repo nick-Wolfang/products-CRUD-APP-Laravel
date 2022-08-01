@@ -66,6 +66,10 @@
         <div class="text-sm font-medium  text-center">
         No account yet? <a class="underline text-indigo-500 hover:font-bold" href="{{route('auth.getRegister')}}"> Create my account</a> 
         </div>
+
+        <div class="text-sm font-medium  text-center underline">
+            <a class="underline text-gray-300 hover:font-bold" href="{{route('auth.getRegister')}}">An admin? </a> 
+        </div>
         
     </div>
 </div>

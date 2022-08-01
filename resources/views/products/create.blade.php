@@ -16,7 +16,6 @@
     
 <div class=" w-full">
        
-      
       <hr class="bg-gray-700 h-3 mb-2 rounded">
       <hr>
        <div class="max-w-3xl bg-white border-4 rounded-md shadow overflow-hidden">

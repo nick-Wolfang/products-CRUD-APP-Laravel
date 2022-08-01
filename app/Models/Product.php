@@ -19,5 +19,9 @@ class Product extends Model
         "image"
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
 }

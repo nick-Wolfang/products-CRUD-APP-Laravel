@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,11 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
+        $users = User::query()->get();
         $products = Product::query()->get();
-        return view('products.index', 
-            ['products' => $products]);
+        // foreach($users as $user) {
+        //     dd($user->product);
+        // }
+            
+        // if(!Auth::check())
+        return view('products.index', ['products' => $products, 'users' => $users]);
+        // $user = User::with(['name'])->findOrFail(Auth::id());
+        // return view('products.index', ['products' => $products, 'user' => $user]);
+            
     }
     public function create()
     {
@@ -39,16 +48,16 @@ class ProductController extends Controller
         }
         // $product = Product::query()->create($request->except(['_token']));
         
-        // $product = new Product();
-        // $product->name = $request->name;
-        // $product->quantity = $request->quantity;
-        // $product->description = $request->description;
-        // $product->stock_min = $request->stock_min;
-        // $product->price = $request->price;
-        // $product->user_id = auth()->id();
-        // $product->image = $path;
-        // $product->save();
-
+        $product = new Product();
+        $product->name = $request->name;
+        $product->quantity = $request->quantity;
+        $product->description = $request->description;
+        $product->stock_min = $request->stock_min;
+        $product->price = $request->price;
+        $product->user_id = auth()->id();
+        //$product->image = $path;
+        $product->save();
+        
         return redirect(route('products.index'));
     }
     public function details($id)
